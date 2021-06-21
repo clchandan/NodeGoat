@@ -24,13 +24,11 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-#        echo "Downloading WS agent"
-#        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
-#        echo "WS agent downloaded"
-
- #   - name: Run WS scan
- #     run: |
- #       echo "Starting WS scan"
- #       java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
+          ls ${{ github.workspace }}/.whitesource
+      - name: Download WS agent"    
+        run: |
+         curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+         echo "WS agent downloaded"
+      - name: Run WS scan
+        run: |
+          java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
