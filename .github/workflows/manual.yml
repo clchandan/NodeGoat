@@ -28,8 +28,9 @@ jobs:
     - name: Download WS agent
       run: |
         echo "Downloading WS agent"
-		    curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+	curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+
       run: |
-			  echo "Run WS agent scan"  
-			  java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
+	echo "Run WS agent scan"  
+	java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
 
