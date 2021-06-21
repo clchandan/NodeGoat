@@ -25,10 +25,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Download WS agent
-      run: |
-        pwd
-        ls -l
+    - name: get runner location
+      run: pwd
+    - name: list files runner can see
+      run: ls -l
 #        echo "Downloading WS agent"
 #        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
 #        echo "WS agent downloaded"
