@@ -33,4 +33,6 @@ jobs:
     - name: Run WS scan
       run: |
         echo "Starting WS scan"
+        pwd
+        ls 
         java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
