@@ -29,9 +29,9 @@ jobs:
       run: |
         pwd
         ls -l
-        echo "Downloading WS agent"
-        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
-        echo "WS agent downloaded"
+#        echo "Downloading WS agent"
+#        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+#        echo "WS agent downloaded"
 
  #   - name: Run WS scan
  #     run: |
