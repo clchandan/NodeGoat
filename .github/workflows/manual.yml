@@ -28,7 +28,7 @@ jobs:
     - name: get runner location
       run: pwd
     - name: list files runner can see
-      run: ls -l
+      run: ls -l ../
 #        echo "Downloading WS agent"
 #        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
 #        echo "WS agent downloaded"
