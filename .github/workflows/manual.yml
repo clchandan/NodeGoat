@@ -25,20 +25,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
-    - name: GP Security Check Step
-      id: gp-security-check
-      uses: whitesource/GitHubPackagesSecurityAction@19.10.2
-      with:
-        gp-token: ${{ secrets.GP_ACCESS_TOKEN }}
-        ws-api-key: ${{ secrets.WS_API_KEY }}
-        ws-user-key: ${{ secrets.WS_USER_KEY }}
-        ws-product-key: ${{ secrets.WS_PRODUCT_KEY }}
-        ws-destination-url: https://app.whitesourcesoftware.com/agent
-    - name: Upload Report
-      uses: actions/upload-artifact@master
-      with:
-        name: security-scan-log
-        path: ${{ steps.gp-security-check.outputs.scan-report-folder-path }}
+    - name: Download WS agent
+      run: |
+        echo "Downloading WS agent"
+		    curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+      run: |
+			  echo "Run WS agent scan"  
+			  java -jar wss-unified-agent.jar -c .whitesource/wss-unified-agent.config -apiKey ${{ secrets.WS_API_KEY }} -userKey ${{ secrets.WS_USER_KEY }} -productToken ${{ secrets.WS_PRODUCT_KEY }} -project WSNodeGoatGit -projectVersion 01.01 -d ..
+
